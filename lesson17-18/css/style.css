@@ -1,0 +1,48 @@
+:root{
+    --bg: purple;
+}
+
+.container{
+    max-width: 1400px;
+}
+
+.reviews{
+    text-decoration: none;
+}
+
+.label-top{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 5px 10px;
+    background-color: var(--bg);
+    text-transform: uppercase;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: bold;
+}
+
+.col{
+    position: relative;
+    padding: 10px;
+}
+
+.card-title a{
+    text-decoration: none;
+    color: rgb(98, 202, 0);
+
+}
+
+.card-img-top{
+    border-top-left-radius: calc(1rem-1px);
+    border-top-right-radius: calc(1rem-1px);
+}
+
+.float-end .small:hover{
+    background-color: rgb(255, 217, 0);
+    border-radius: 3px;
+}
+
+.text-white:hover{
+    font-size: 14px;
+}

@@ -1,0 +1,33 @@
+img {
+    width: 40px;
+    height: 40px;
+}
+
+.uk-card-title>small{
+    font-size: 50% ;
+}
+
+.user-group{
+    padding-left: 15px;
+}
+
+.user-group>li{
+    display: inline;
+}
+
+.user-group>li::after,
+.user-group>li::before{
+    content: none;
+}
+
+.user-group>li:hover>img{
+    transform: scale(1.3);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.user-group>li>img{
+    border: 2px solid #fff;
+    margin-left: -15px;
+    position: relative;
+}

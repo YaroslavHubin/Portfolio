@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ topic.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="login_form">
+        <h1>{{ topic.title }}</h1>
+        <p>{{ topic.content|safe }}</p>
+        <p>by {{ topic.author }} on {{ topic.created_at }}</p>
+        <a class="back_button" href="{{ url_for('create_post', topic_id=topic._id) }}">Add Reply</a>
+        {% if session['username'] == topic.author or session['role'] in ['admin', 'owner'] %}
+            <a class="back_button" href="{{ url_for('edit_topic', topic_id=topic._id) }}">Edit Topic</a>
+            <form action="{{ url_for('delete_topic', topic_id=topic._id) }}" method="POST">
+                <button class="back_button_1" type="submit">Delete Topic</button>
+            </form>
+        {% endif %}
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <p>{{ post.content|safe }}</p>
+                    {% if post.code %}
+                        <pre><code>{{ post.code|safe }}</code></pre>
+                    {% endif %}
+                    <p>by {{ post.author }} on {{ post.created_at }}</p>
+                    {% if session['username'] == post.author or session['role'] in ['admin', 'owner'] %}
+                        <a class="back_button" href="{{ url_for('edit_post', post_id=post._id) }}">Edit Post</a>
+                        <form action="{{ url_for('delete_post', post_id=post._id) }}" method="POST">
+                            <button class="back_button_1" type="submit">Delete Post</button>
+                        </form>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        <a class="back_button" href="{{ url_for('forum') }}">Back to Forum</a>
+    </div>
+</body>
+</html>

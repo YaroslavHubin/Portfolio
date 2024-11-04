@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Post</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+</head>
+<body>
+    <div class="login_form">
+        <h1>Create New Post</h1>
+        <form action="{{ url_for('create_post', topic_id=topic_id) }}" method="POST">
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" rows="10" required></textarea><br>
+            <!-- Initialize CKEditor for main content -->
+            <script>
+                CKEDITOR.replace('content');
+            </script>
+
+            <label for="code">Code:</label>
+            <textarea id="code" name="code" rows="10"></textarea><br>
+            <!-- Initialize CKEditor for code (if needed) -->
+            <script>
+                CKEDITOR.replace('code');
+            </script>
+            <button type="submit">Create Post</button>
+        </form>
+        <a class="back_button" href="{{ url_for('view_topic', topic_id=topic_id) }}">Back to Topic</a>
+    </div>
+</body>
+</html>

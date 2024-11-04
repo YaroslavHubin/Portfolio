@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Головна</a></li>
+                <li><a href="#">Новини</a>
+                <ul>
+                    <li><a href="{{ url_for('rynok_praci') }}">Ринок праці</a></li>
+                    <li><a href="{{ url_for('new_articles') }}">Нові статті</a></li>
+                </ul>
+                </li>
+                <li><a href="#">Веб Дизайн</a>
+                    <ul>
+                        <li><a href="{{ url_for('html_css') }}">HTML/CSS</a></li>
+                        <li><a href="{{ url_for('JQuery') }}">JQuery</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ url_for('java') }}">Java</a></li>
+                <li><a href="{{ url_for('python') }}">Python</a></li>
+                <li><a href="{{ url_for('c_sharp') }}">C#</a></li>
+                <li><a href="{{ url_for('forum') }}">Форум</a></li>
+                <li><a href="{{ url_for('contacts') }}">Контакти</a></li>
+
+                {% if 'user_id' in session %}
+                    <li><a href="{{ url_for('edit_user') }}">Налаштування</a></li>
+                    <li><a href="{{ url_for('logout') }}">Вийти</a></li>
+                    {% if session.role == 'admin' %}
+                        <li><a href="{{ url_for('manage_users') }}">Управління користувачами</a></li>
+                        <li><a href="{{ url_for('add_user') }}">Додати користувача</a></li>
+                    {% endif %}
+                    {% if session.role == 'owner' %}
+                        <li><a href="{{ url_for('manage_all_users') }}">Управління користувачами</a></li>
+                        <li><a href="{{ url_for('owner_add_user') }}">Додати користувача</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{{ url_for('register') }}">Реєстрація</a></li>           
+                    <li><a href="{{ url_for('login') }}">Увійти</a></li>
+                {% endif %}
+                
+            </ul>
+        </nav>
+    </div>
+    {% if role in ['admin', 'owner'] %}
+        <div class="text_right_button">
+            <form action="{{ url_for('add_article', category='java') }}" method="GET">
+                <button type="submit" class="back_button_1">Add Article</button>
+            </form>
+        </div>
+    {% endif %}
+    <div class="text">
+        <h1 class="main_text">Java</h1>
+        <p class="container_text_main">На цій сторінці ви знайдете основну інформацію пов'язану з такою мовою програмування, як Java.</p>
+    </div>
+
+    <div class="text_block">          
+        <h1 class="main_text">Що ж таке Java?</h1>
+        <p class="container_text_main">Java -  об'єктно-орієнтована мова програмування, випущена 1995 року компанією «Sun Microsystems» як основний компонент платформи Java. 
+            З 2009 року мовою займається компанія «Oracle», яка того року придбала «Sun Microsystems». В офіційній реалізації Java-програми компілюються у байт-код, який при виконанні інтерпретується віртуальною машиною для конкретної платформи. 
+            «Oracle» надає компілятор Java та віртуальну машину Java, які задовольняють специфікації Java Community Process, під ліцензією GNU General Public License.</p>
+        <h1 class="main_text">Де використовується Java?</h1>
+        <p class="container_text_main">Java широко використовується у багатьох галузях та для різних цілей завдяки своїй портативності, надійності та масштабованості. Ось деякі з основних сфер використання Java: веб-розробка, розробка ігор, додатків для мобільних телефонів,
+            наукових додатків тощо. Java є універсальною мовою програмування, яка може бути використана в різних сферах, що робить її однією з найпопулярніших мов серед розробників. 
+            Хоча Java підтримує паралельне програмування та багатопоточність, існують обмеження в масштабовності, які можуть виникнути в дуже великих проектах або при роботі з великими обсягами даних.  
+        </p>
+        <h1 class="main_text">Як щодо прикладів програмного коду на Java?</h1>
+        <p class="container_text_main">Розглянемо приклад з Hello world на Java.</p><br>
+        <pre>
+            <code>
+public class HelloWorld {
+    public static void main(String[] args) {
+    System.out.println("Hello, World!");
+    }
+}
+            </code>
+        </pre><br>
+        <p class="container_text_main">Ще також можна навести приклади використання циклів та умов. Ось приклад використання умов на Java:</p><br>
+        <pre>
+            <code>
+public class Main {
+    public static void main(String[] args) {
+        int number = 10;
+        if (number > 0) {
+            System.out.println("Число додатне");
+        } else if (number < 0) {
+            System.out.println("Число від'ємне");
+        } else {
+            System.out.println("Число рівне нулю");
+        }
+    }
+}
+            </code>
+        </pre><br>
+        <p class="container_text_main">Ось приклад використання циклів на Java:</p><br>
+        <pre>
+            <code>
+public class Main {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 3, 4, 5};
+
+        // Цикл for для виведення кожного числа масиву на екран
+        System.out.println("Виведення чисел масиву:");
+        for (int i = 0; i < numbers.length; i++) {
+            System.out.println(numbers[i]);
+        }
+
+        // Цикл while для виведення чисел від 1 до 5
+        System.out.println("\nВиведення чисел від 1 до 5:");
+        int j = 1;
+        while (j <= 5) {
+            System.out.println(j);
+            j++;
+        }
+
+        // Цикл do-while для виведення чисел від 1 до 5
+        System.out.println("\nВиведення чисел від 1 до 5 (do-while):");
+        int k = 1;
+        do {
+            System.out.println(k);
+            k++;
+        } while (k <= 5);
+    }
+}
+            </code>
+        </pre><br>
+        <p class="container_text_main">Також ось приклад програми на Java для перевірки хешу кольору, тобто чи буде кольор такого типу #121212 правильним, чи ні:</p><br>
+        <pre>
+            <code>
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+                
+public class ColorCodeValidation {
+    public static boolean validateColorCode(String color) {
+        if (color == null){
+            return false;
+        } else {
+        Pattern pattern = Pattern.compile("^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(color);
+        boolean b = matcher.matches();
+        return b;}
+    }
+}
+            </code>
+        </pre><br>
+        <p class="container_text_main">Джерела:</p>
+        <a class="container_text_main" target="_blank" href="https://uk.wikipedia.org/wiki/Java">Джерело 1</a><br>
+    </div>
+    <div class="articles">
+        {% for article in articles %}
+            <div class="text_block">
+                <h1 class="main_text">{{ article.title }}</h1>
+                <p class="container_text_main">{{ article.content|safe}}</p>
+                <div class="left_containered_info">
+                    <p class="article-meta">By {{ article.author }} on {{ article.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                    {% if article.updated_at %}
+                    Last updated on {{ article.updated_at.strftime('%Y-%m-%d %H:%M') }}
+                    {% endif %}
+                </div>
+                {% if role in ['admin', 'owner'] %}
+                    <form action="{{ url_for('edit_article', article_id=article._id) }}" method="GET">
+                        <button type="submit" class="back_button_1">Edit</button>
+                    </form>
+                    <form action="{{ url_for('delete_article', article_id=article._id) }}" method="POST">
+                        <button type="submit" class="back_button_2">Delete</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

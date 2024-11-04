@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curse work.</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Головна</a></li>
+                <li><a href="#">Новини</a>
+                <ul>
+                    <li><a href="{{ url_for('rynok_praci') }}">Ринок праці</a></li>
+                    <li><a href="{{ url_for('new_articles') }}">Нові статті</a></li>
+                </ul>
+                </li>
+                <li><a href="#">Веб Дизайн</a>
+                    <ul>
+                        <li><a href="{{ url_for('html_css') }}">HTML/CSS</a></li>
+                        <li><a href="{{ url_for('JQuery') }}">JQuery</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ url_for('java') }}">Java</a></li>
+                <li><a href="{{ url_for('python') }}">Python</a></li>
+                <li><a href="{{ url_for('c_sharp') }}">C#</a></li>
+                <li><a href="{{ url_for('forum') }}">Форум</a></li>
+                <li><a href="{{ url_for('contacts') }}">Контакти</a></li>
+
+                {% if username %}
+                    <li><a href="{{ url_for('edit_user') }}">Налаштування</a></li>
+                    <li><a href="{{ url_for('logout') }}">Вийти</a></li>
+                    {% if session.role == 'admin' %}
+                        <li><a href="{{ url_for('manage_users') }}">Управління користувачами</a></li>
+                        <li><a href="{{ url_for('add_user') }}">Додати користувача</a></li>
+                    {% endif %}
+                    {% if session.role == 'owner' %}
+                        <li><a href="{{ url_for('manage_all_users') }}">Управління користувачами</a></li>
+                        <li><a href="{{ url_for('owner_add_user') }}">Додати користувача</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{{ url_for('register') }}">Реєстрація</a></li>           
+                    <li><a href="{{ url_for('login') }}">Увійти</a></li>
+                {% endif %}
+                
+            </ul>
+        </nav>
+    </div>
+    <div class="text">
+        <h1 class="main_text">Головна сторінка IT-блогу</h1>
+    </div>
+    <div class="container_text_main">
+        <p class="not_main_text">На цій сторінці ви завжди зможете перейти до будь-якого матеріалу, котрий знаходиться на цьому сайті. 
+                Також нижче на цій сторінці буде зазначений ваш логін і email під яким ви заходили на ваш аккаунт. Натискаючи на знак (+) в 
+                навігаційний панелі ви зможете відкрити додаткові посилання, котрі доступні у цій темі. <br>На вкладці "Форум" ви завжди зможете долучитись
+                до актуальних тем і питань, які викладають інші користувачі. Ви зможете обговорювати будь-які теми, що стосуються IT - сфери. Також
+                на вкладці "Форум" ви зможете виставляти свої теми для обговорень і відповідати на теми інших користувачів, але для початку вам необхідно буде
+                зареєструвати аккаунт і увійти в нього. Після того, ви можете відправлятись шукати пригоди на нашому форумі :). <br> І також не забудьте відвідати
+                наші класні сторінки, на яких ви зможете знайти купу корисного матеріалу, що стосується програмування, ринку праці і не тільки! </p>
+        {% if username %}
+        <p class="fixed-text">Logged in as: {{ username }}, with role {{ role }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

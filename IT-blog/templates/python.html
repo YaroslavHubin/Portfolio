@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Головна</a></li>
+                <li><a href="#">Новини</a>
+                <ul>
+                    <li><a href="{{ url_for('rynok_praci') }}">Ринок праці</a></li>
+                    <li><a href="{{ url_for('new_articles') }}">Нові статті</a></li>
+                </ul>
+                </li>
+                <li><a href="#">Веб Дизайн</a>
+                    <ul>
+                        <li><a href="{{ url_for('html_css') }}">HTML/CSS</a></li>
+                        <li><a href="{{ url_for('JQuery') }}">JQuery</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ url_for('java') }}">Java</a></li>
+                <li><a href="{{ url_for('python') }}">Python</a></li>
+                <li><a href="{{ url_for('c_sharp') }}">C#</a></li>
+                <li><a href="{{ url_for('forum') }}">Форум</a></li>
+                <li><a href="{{ url_for('contacts') }}">Контакти</a></li>
+
+                {% if 'user_id' in session %}
+                    <li><a href="{{ url_for('edit_user') }}">Налаштування</a></li>
+                    <li><a href="{{ url_for('logout') }}">Вийти</a></li>
+                    {% if session.role == 'admin' %}
+                        <li><a href="{{ url_for('manage_users') }}">Управління користувачами</a></li>
+                        <li><a href="{{ url_for('add_user') }}">Додати користувача</a></li>
+                    {% endif %}
+                    {% if session.role == 'owner' %}
+                        <li><a href="{{ url_for('manage_all_users') }}">Управління користувачами</a></li>
+                        <li><a href="{{ url_for('owner_add_user') }}">Додати користувача</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{{ url_for('register') }}">Реєстрація</a></li>           
+                    <li><a href="{{ url_for('login') }}">Увійти</a></li>
+                {% endif %}
+                
+            </ul>
+        </nav>
+    </div>
+    {% if role in ['admin', 'owner'] %}
+        <div class="text_right_button">
+            <form action="{{ url_for('add_article', category='python') }}" method="GET">
+                <button type="submit" class="back_button_1">Add Article</button>
+            </form>
+        </div>
+    {% endif %}
+    <div class="text">
+        <h1 class="main_text">Python</h1>
+        <p class="container_text_main">На цій сторінці ви знайдете основну інформацію пов'язану з такою мовою програмування, як Python.</p>
+    </div>
+
+    <div class="text_block">          
+        <h1 class="main_text">Що ж таке Python?</h1>
+        <p class="container_text_main">Python - інтерпретована об'єктно-орієнтована мова програмування високого рівня із суворою динамічною типізацією. Розроблена в 1990 році Гвідо ван Россумом. Структури даних високого рівня разом із динамічною семантикою та динамічним зв'язуванням роблять її привабливою для швидкої розробки програм, а також як засіб поєднування наявних компонентів. Python підтримує модулі та пакети модулів, що сприяє модульності та повторному використанню коду. Інтерпретатор Python та стандартні бібліотеки доступні як у скомпільованій, так і у вихідній формі на всіх основних платформах. В мові програмування Python підтримується кілька парадигм програмування, зокрема: об'єктно-орієнтована, процедурна, аспектно-орієнтована та функціональна.</p>
+        <h1 class="main_text">Де використовується Python?</h1>
+        <p class="container_text_main">Python використовуються у багатьох сферах, таких як: ігрова індустрія, веб-дизайн, прикладне програмування тощо. Але Python, окрім того що це дуже проста мова, котра не потребує приділення великої уваги до синтаксису, тому що він там
+            дуже простий (синтаксис), він ще є повільною мовою, що дає свої певні обмеження. Тобто незваєаючи на те, що він має дуже багато бібліотек, які можна використати для створення красивих і водночас не дуже складних речей, ці речі мають бути не надто складними для обчислень
+            , оскільки у Python`і з цим є проблеми, через те що він є інтерпретованою мовою.  
+        </p>
+        <h1 class="main_text">Як щодо прикладів програмного коду на Python?</h1>
+        <p class="container_text_main">Розглянемо приклад з Hello world на Python.</p><br>
+        <pre>
+            <code>
+def hello_world():
+    print("Hello, world!")
+hello_world()
+            </code>
+        </pre><br>
+        <p class="container_text_main">Ще також можна навести приклади використання циклів та умов. Ось приклад використання умов на Python:</p><br>
+        <pre>
+            <code>
+def hello_world():
+    print("Hello, world!")
+n=2
+if n != 1:
+    hello_world()
+else:
+    print("Error, n=1")
+            </code>
+        </pre><br>
+        <p class="container_text_main">Ось приклад використання циклів на Python:</p><br>
+        <pre>
+            <code>
+def hello_world():
+    print("Hello, world!")
+n=1
+for i in range(1,10);
+    if n == 10:
+        hello_world()
+    else:
+        print("Error, n="+i)
+        n+=1
+            </code>
+        </pre><br>
+        <p class="container_text_main">Окрім звичайних програм, Python також гарно підходить для тренування моделей машинного навчання. Ось приклад з реального проетку, разом з використанням ML (Machine learning) для передбачення погоди:</p><br>
+        <pre>
+            <code>
+import pandas as pd
+import numpy as np
+from datetime import datetime, timedelta
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+                
+data = pd.read_excel('погода.xlsx')
+                
+data['timestamp'] = pd.to_datetime(data['timestamp'], format='%Y%m%dT%H%M')
+                
+data['day_of_year'] = data['timestamp'].dt.dayofyear
+data['hour'] = data['timestamp'].dt.hour
+                
+X = data[['day_of_year', 'hour']].values  # день року та година
+y = data['Basel Temperature [2 m elevation corrected]'].values  # Температура
+                
+model = LinearRegression()
+model.fit(X, y)
+                
+last_timestamp = data['timestamp'].max()
+future_dates = [last_timestamp + timedelta(hours=i) for i in range(1, 24*365*20+1)]
+                
+future_day_of_year = [date.dayofyear for date in future_dates]
+future_hour = [date.hour for date in future_dates]
+                
+future_predictions = model.predict(np.column_stack((future_day_of_year, future_hour)))
+                
+for i in range(20):
+    start_idx = i * 24*365
+    end_idx = (i + 1) * 24*365
+    year_predictions = future_predictions[start_idx:end_idx]
+    plt.plot(future_dates[start_idx:end_idx], year_predictions, label=f'Year {i+1}')
+                
+plt.title('Temperature Predictions for Next 20 Years')
+plt.xlabel('Date')
+plt.ylabel('Temperature')
+plt.legend()
+plt.show()
+            </code>
+        </pre><br>
+        <p class="container_text_main">Тут наведено приклад розбиття цілого датасету на окремі колонки часу(рік, місяць, день, година). Також задано модель лінійної регресії для передбачення погоди на наступні 20 років.
+            Також ось візуальне відображення розподілу даних і тренування моделі.
+        </p><br>
+        <br><div class="photos">
+            <img src="{{ url_for('static', filename='images/regression.jpg') }}" alt="regression.jpg">
+        </div><br>
+        <br><div class="photos">
+            <img src="{{ url_for('static', filename='images/prediction.jpg') }}" alt="prediction.jpg">
+        </div><br>
+        <br><div class="photos">
+            <img src="{{ url_for('static', filename='images/feature.jpg') }}" alt="feature.jpg">
+        </div><br>
+        <p class="container_text_main">Джерела:</p>
+        <a class="container_text_main" target="_blank" href="https://uk.wikipedia.org/wiki/Python">Джерело 1</a><br>
+    </div>
+    <div class="articles">
+        {% for article in articles %}
+            <div class="text_block">
+                <h1 class="main_text">{{ article.title }}</h1>
+                <p class="container_text_main">{{ article.content|safe}}</p>
+                <div class="left_containered_info">
+                    <p class="article-meta">By {{ article.author }} on {{ article.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                    {% if article.updated_at %}
+                    Last updated on {{ article.updated_at.strftime('%Y-%m-%d %H:%M') }}
+                    {% endif %}
+                </div>
+                {% if role in ['admin', 'owner'] %}
+                    <form action="{{ url_for('edit_article', article_id=article._id) }}" method="GET">
+                        <button type="submit" class="back_button_1">Edit</button>
+                    </form>
+                    <form action="{{ url_for('delete_article', article_id=article._id) }}" method="POST">
+                        <button type="submit" class="back_button_2">Delete</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

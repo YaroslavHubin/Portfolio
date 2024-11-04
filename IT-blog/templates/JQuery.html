@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Головна</a></li>
+                <li><a href="#">Новини</a>
+                <ul>
+                    <li><a href="{{ url_for('rynok_praci') }}">Ринок праці</a></li>
+                    <li><a href="{{ url_for('new_articles') }}">Нові статті</a></li>
+                </ul>
+                </li>
+                <li><a href="#">Веб Дизайн</a>
+                    <ul>
+                        <li><a href="{{ url_for('html_css') }}">HTML/CSS</a></li>
+                        <li><a href="{{ url_for('JQuery') }}">JQuery</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ url_for('java') }}">Java</a></li>
+                <li><a href="{{ url_for('python') }}">Python</a></li>
+                <li><a href="{{ url_for('c_sharp') }}">C#</a></li>
+                <li><a href="{{ url_for('forum') }}">Форум</a></li>
+                <li><a href="{{ url_for('contacts') }}">Контакти</a></li>
+
+                {% if 'user_id' in session %}
+                    <li><a href="{{ url_for('edit_user') }}">Налаштування</a></li>
+                    <li><a href="{{ url_for('logout') }}">Вийти</a></li>
+                    {% if session.role == 'admin' %}
+                        <li><a href="{{ url_for('manage_users') }}">Управління користувачами</a></li>
+                        <li><a href="{{ url_for('add_user') }}">Додати користувача</a></li>
+                    {% endif %}
+                    {% if session.role == 'owner' %}
+                        <li><a href="{{ url_for('manage_all_users') }}">Управління користувачами</a></li>
+                        <li><a href="{{ url_for('owner_add_user') }}">Додати користувача</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{{ url_for('register') }}">Реєстрація</a></li>           
+                    <li><a href="{{ url_for('login') }}">Увійти</a></li>
+                {% endif %}
+                
+            </ul>
+        </nav>
+    </div>
+    {% if role in ['admin', 'owner'] %}
+        <div class="text_right_button">
+            <form action="{{ url_for('add_article', category='JQuery') }}" method="GET">
+                <button type="submit" class="back_button_1">Add Article</button>
+            </form>
+        </div>
+    {% endif %}
+    <div class="text">
+        <h1 class="main_text">JQuery</h1>
+        <p class="container_text_main">На цій сторінці ви знайдете основну інформацію пов'язану з такою мовою програмування, як JQuery.</p>
+    </div>
+
+    <div class="text_block">          
+        <h1 class="main_text">Що ж таке JQuery?</h1>
+        <p class="container_text_main">JQuery -  популярна JavaScript-бібліотека з відкритим кодом. Вона була представлена у січні 2006 року у BarCamp NYC Джоном Ресіґом (John Resig). Згідно з дослідженнями організації W3Techs, JQuery використовується понад половиною від мільйона найвідвідуваніших сайтів.
+            jQuery є найпопулярнішою бібліотекою JavaScript, яка посилено використовується на сьогоднішній день.
+            jQuery є вільним програмним забезпеченням під ліцензією MIT (до вересня 2012 було подвійне ліцензування під MIT та GNU General Public License другої версії).            
+            Синтаксис jQuery розроблений, щоб зробити орієнтування у навігації зручнішим завдяки вибору елементів DOM, створенню анімації, обробки подій, і розробки AJAX-застосунків. jQuery також надає можливості для розробників, для створення плагінів у верхній частині бібліотеки JavaScript.
+            Використовуючи ці об'єкти, розробники можуть створювати абстракції для низькорівневої взаємодії та створювати анімацію для ефектів високого рівня. Це сприяє створенню потужних і динамічних вебсторінок.</p>
+        <h1 class="main_text">Де використовується JQuery?</h1>
+        <p class="container_text_main">jQuery - це популярна бібліотека JavaScript, яка значно спрощує роботу з JavaScript та HTML. Вона використовується в багатьох аспектах веб-розробки. Ось деякі з основних сфер використання jQuery:
+            <ul>
+                <li>Маніпулювання DOM (Document Object Model)</li>
+                <li>Обробка подій</li>
+                <li>Анімації</li>
+                <li>AJAX-запити</li>
+                <li>Перехресна браузерна сумісність</li>
+                <li>Плагіни</li>
+                <li>Навігація по DOM</li>
+            </ul>
+        </p>
+        <h1 class="main_text">Як щодо прикладів програмного коду на JQuery?</h1>
+        <p class="container_text_main">Розглянемо приклад коду на JQuery.</p><br>
+        <pre>
+            <code>
+$('#test') //знаходимо елемент з id="test" 
+.text('Клікни по мені')  //встановлюємо текст елемента рівним "Клікни по мені"
+.addClass('myAlert')     //додаємо клас "myAlert"
+.css('color','red')      //встановлюємо колір тексту червоним
+.attr('alert','Привіт, світе!') // додаємо атрибут "alert" із значенням "Привіт, світе!"
+.bind(                       // додаємо в обробник події click функцію, яка відкриє модальне
+    'click',                 // вікно із текстом, що вказаний в атрибуті "alert" ("Привіт, світе!")
+    function(){alert($(this).attr('alert'))}
+);
+            </code>
+        </pre><br>
+        <p class="container_text_main">Тут ще приклади коду на JQuery:</p><br>
+        <pre>
+            <code>
+// Виберемо всі парні елементи "tr", і застосуємо для них css клас "odd"
+$("tr:nth-child(odd)").addClass("odd");
+
+// Відправлення асинхронного POST запиту на адресу '/ajaxtest.php'
+
+$.post(
+  '/ajaxtest.php',
+  {
+    type: "test-request",
+    param1: "param1",
+    param2: 2
+  },
+  onAjaxSuccess
+);
+
+function onAjaxSuccess(data){ // Тут ми отримуємо відповідь, і опрацьовуємо результат
+  alert(data);
+}
+            </code>
+        </pre><br>
+        <p class="container_text_main">Ось представлена функція, яка забезпечує зміну кольору тексту у всіх контейнерах div на синій при клацанні мишкою у будь-якому місці сторінки:</p><br>
+        <pre>
+            <code>
+$(document.body).click(function () {  
+    $("div").each(function (i) {  
+      if (this.style.color != "blue") {  
+        this.style.color = "blue";  
+      } else {  
+        this.style.color = "";  
+      }  
+    });  
+  });
+            </code>
+        </pre><br>
+        <p class="container_text_main">Джерела:</p>
+        <a class="container_text_main" target="_blank" href="https://uk.wikipedia.org/wiki/JQuery">Джерело 1</a><br>
+    </div>
+    <div class="articles">
+        {% for article in articles %}
+            <div class="text_block">
+                <h1 class="main_text">{{ article.title }}</h1>
+                <p class="container_text_main">{{ article.content|safe}}</p>
+                <div class="left_containered_info">
+                    <p class="article-meta">By {{ article.author }} on {{ article.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                    {% if article.updated_at %}
+                    Last updated on {{ article.updated_at.strftime('%Y-%m-%d %H:%M') }}
+                    {% endif %}
+                </div>
+                {% if role in ['admin', 'owner'] %}
+                    <form action="{{ url_for('edit_article', article_id=article._id) }}" method="GET">
+                        <button type="submit" class="back_button_1">Edit</button>
+                    </form>
+                    <form action="{{ url_for('delete_article', article_id=article._id) }}" method="POST">
+                        <button type="submit" class="back_button_2">Delete</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

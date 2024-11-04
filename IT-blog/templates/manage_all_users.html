@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage All Users</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="login_form">
+        <h1>Manage All Users</h1>
+        <form method="GET" action="{{ url_for('manage_all_users') }}">
+            <input type="text" name="search" placeholder="Search by username or email" value="{{ request.args.get('search', '') }}">
+            <button type="submit">Search</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td class="td_email_padding">{{ user.email }}</td>
+                    <td class="td_role_padding">{{ user.role }}</td>
+                    <td class="selectors">
+                        <form action="{{ url_for('owner_update_role', user_id=user._id) }}" method="post" style="display:inline;">
+                            <select class="manage_users_select" name="role">
+                                <option value="user" {% if user.role == 'user' %}selected{% endif %}>User</option>
+                                <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+                                <option value="owner" {% if user.role == 'owner' %}selected{% endif %}>Owner</option>
+                            </select>
+                            <button type="submit">Update Role</button>
+                        </form>
+                        <form class="delete_button_in_manage_users" action="{{ url_for('delete_user', user_id=user._id) }}" method="post" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                        <button onclick="document.getElementById('resetPasswordForm-{{ user._id }}').style.display='block'">Reset Password</button>
+                        <div id="resetPasswordForm-{{ user._id }}" style="display:none;">
+                            <form action="{{ url_for('owner_reset_password', user_id=user._id) }}" method="post">
+                                <input type="password" name="new_password" placeholder="New Password" required>
+                                <button type="submit">Reset Password</button>
+                            </form>
+                        </div>
+                        <form class="delete_button_in_manage_users" action="{{ url_for('user_messages', user_id=user._id) }}">
+                            <button class="View_Messages" type="submit">View Messages</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="back_button" href="{{ url_for('owner_add_user') }}">Add New User</a>
+        <a class="back_button" onclick="goBack()">Back</a>
+        <a class="back_button" href="{{ url_for('index') }}">Menu</a>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

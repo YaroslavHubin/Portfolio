@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Messages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="login_form">
+        <h1>Messages for {{ user.username }}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for message in messages %}
+                <tr>
+                    <td>{{ message.title }}</td>
+                    <td>{{ message.content }}</td>
+                    <td>{{ message.created_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="back_button" onclick="goBack()">Back</a>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

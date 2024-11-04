@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML/CSS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Головна</a></li>
+                <li><a href="#">Новини</a>
+                <ul>
+                    <li><a href="{{ url_for('rynok_praci') }}">Ринок праці</a></li>
+                    <li><a href="{{ url_for('new_articles') }}">Нові статті</a></li>
+                </ul>
+                </li>
+                <li><a href="#">Веб Дизайн</a>
+                    <ul>
+                        <li><a href="{{ url_for('html_css') }}">HTML/CSS</a></li>
+                        <li><a href="{{ url_for('JQuery') }}">JQuery</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ url_for('java') }}">Java</a></li>
+                <li><a href="{{ url_for('python') }}">Python</a></li>
+                <li><a href="{{ url_for('c_sharp') }}">C#</a></li>
+                <li><a href="{{ url_for('forum') }}">Форум</a></li>
+                <li><a href="{{ url_for('contacts') }}">Контакти</a></li>
+
+                {% if 'user_id' in session %}
+                    <li><a href="{{ url_for('edit_user') }}">Налаштування</a></li>
+                    <li><a href="{{ url_for('logout') }}">Вийти</a></li>
+                    {% if session.role == 'admin' %}
+                        <li><a href="{{ url_for('manage_users') }}">Управління користувачами</a></li>
+                        <li><a href="{{ url_for('add_user') }}">Додати користувача</a></li>
+                    {% endif %}
+                    {% if session.role == 'owner' %}
+                        <li><a href="{{ url_for('manage_all_users') }}">Управління користувачами</a></li>
+                        <li><a href="{{ url_for('owner_add_user') }}">Додати користувача</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{{ url_for('register') }}">Реєстрація</a></li>           
+                    <li><a href="{{ url_for('login') }}">Увійти</a></li>
+                {% endif %}
+                
+            </ul>
+        </nav>
+    </div>
+    {% if role in ['admin', 'owner'] %}
+        <div class="text_right_button">
+            <form action="{{ url_for('add_article', category='html_css') }}" method="GET">
+                <button type="submit" class="back_button_1">Add Article</button>
+            </form>
+        </div>
+    {% endif %}
+    <div class="text">
+        <h1 class="main_text">HTML/CSS</h1>
+        <p class="container_text_main">На цій сторінці ви знайдете основну інформацію пов'язану з HTML і CSS.</p>
+    </div>
+
+    <div class="text_block">          
+        <h1 class="main_text">Що ж таке HTML?</h1>
+        <p class="container_text_main">HTML (Hyper text markup language) – це мова для розмітки тексту, що дозволяє описувати веб-документи. HTML документи формуються за допомогою HTML тегів. Кожен HTML
+            тег описує певну частину контенту або метаінформації документа.
+            
+            </p>
+        <h1 class="main_text">Де використовується HTML?</h1>
+        <p class="container_text_main">HTML документ описується в текстовому вигляді, але якщо створити
+            файл із розширенням .html (або .htm), внести у нього HTML текст і відкрити у
+            браузері, то браузер відобразить його у графічні елементи, що описані тегами.
+            Саме це перетворення розміченого тексту у графічний документ і відбувається
+            щоразу при завантаженні сторінки у веб-браузері.
+            Також поширеним застосуванням HTML є:
+            Веб-розробка: HTML використовується для створення структури і змісту веб-сторінок. Він визначає заголовки, параграфи, списки, таблиці, посилання, зображення та інші елементи, які відображаються в браузері.
+            Мобільна розробка: HTML разом з CSS і JavaScript використовується для створення мобільних веб-сторінок та веб-додатків, які можуть відображатися на різних пристроях і розмірах екранів.
+            Електронна пошта: HTML використовується для створення структурованих та стилізованих електронних листів, які можуть містити текст, зображення, посилання та інші елементи.
+        </p>
+        <h1 class="main_text">Як щодо прикладів програмного коду на HTML?</h1>
+        <p class="container_text_main">Розглянемо приклад з Hello world на HTML.</p><br>
+        <pre>
+            <code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+     &lt;title&gt;Hello World Example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Hello, World!&lt;/h1&gt;
+
+&lt;script&gt;
+    // JavaScript код для виведення &quot;Hello, World!&quot; в консоль браузера
+    console.log(&quot;Hello, World!&quot;);
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+            </code>
+        </pre><br>
+        
+        <p class="container_text_main">Сенс показувати якісь великі проекти на чистому HTML сенсу мало, оскільки зараз HTML використовується разом з CSS та JavaScript. Тому давайте розберемось з CSS.</p>
+        <h1 class="main_text">Що таке CSS?</h1>
+        <p class="container_text_main">CSS - це спеціальна мова стилю сторінок, що використовується для опису їхнього зовнішнього вигляду. Самі ж сторінки написані мовами розмітки даних. CSS є основною технологією всесвітньої павутини, поряд із HTML та JavaScript.</p>
+        <p class="container_text_main">Як виглядає код на CSS? Для прикладу буде використано пару стрічок, які використовувались при розробці цього сайту і цієї сторінки.</p><br>
+        <pre>
+            <code>
+h1 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    line-height: 1.2;
+}
+
+.text_block{
+    margin: 10px 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #333333;
+    border-radius: 10px;
+    padding: 2px;
+    margin-bottom: 20px;
+}
+
+.text .main_text{
+    font-size: 62px;
+}
+
+body{
+    background: #212121;
+    font-size: 22px;
+    line-height: 32px;
+    color: #fff;
+    word-wrap: break-word;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+                
+a {
+    color: #fff;
+}
+            </code>
+        </pre><br>
+        <p class="container_text_main">Тобто, як ми бачимо, код який можна було б використати разом з HTML можна виокримити в окремий файл .css і він буде працювати на всі сторінки, які підключені до цього файлу .css. Тобто, якщо раніше стилі
+             потрібно було прописувати для кожної сторінки окремо, то тепер ці стилі можна винести в окремий .css файл і підключати для прикладу до сторінок одного проекту. Для підключення використовується наступний код:</p><br>
+             <pre>
+                <code>
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot;&gt;
+                </code>
+            </pre><br>
+
+        <p class="container_text_main">Джерела:</p>
+        <a class="container_text_main" target="_blank" href="https://uk.wikipedia.org/wiki/HTML">Джерело 1</a><br>
+        <a class="container_text_main" target="_blank" href="https://uk.wikipedia.org/wiki/CSS">Джерело 2</a><br>
+    </div>
+    <div class="articles">
+        {% for article in articles %}
+            <div class="text_block">
+                <h1 class="main_text">{{ article.title }}</h1>
+                <p class="container_text_main">{{ article.content|safe}}</p>
+                <div class="left_containered_info">
+                    <p class="article-meta">By {{ article.author }} on {{ article.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                    {% if article.updated_at %}
+                    Last updated on {{ article.updated_at.strftime('%Y-%m-%d %H:%M') }}
+                    {% endif %}
+                </div>
+                {% if role in ['admin', 'owner'] %}
+                    <form action="{{ url_for('edit_article', article_id=article._id) }}" method="GET">
+                        <button type="submit" class="back_button_1">Edit</button>
+                    </form>
+                    <form action="{{ url_for('delete_article', article_id=article._id) }}" method="POST">
+                        <button type="submit" class="back_button_2">Delete</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

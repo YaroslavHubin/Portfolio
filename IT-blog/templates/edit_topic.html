@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Topic</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="login_form">
+        <h1>Edit Topic</h1>
+        <form action="{{ url_for('edit_topic', topic_id=topic._id) }}" method="POST">
+            <div class="create_topic_form">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" value="{{ topic.title }}" required>
+            </div>
+            <div class="create_topic_form">
+                <label for="content">Content</label>
+                <textarea id="content" rows="10" name="content" required>{{ topic.content }}</textarea>
+            </div>
+            <br>
+            <button type="submit">Save Changes</button>
+        </form>
+        <a class="back_button" href="{{ url_for('view_topic', topic_id=topic._id) }}">Back to Topic</a>
+    </div>
+</body>
+</html>

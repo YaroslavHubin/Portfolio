@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Article</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+</head>
+<body>
+    <div class="login_form">
+        <h1>Add Article to {{ category }}</h1>
+        <form action="{{ url_for('add_article', category=category) }}" method="POST">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+            <br>
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" rows="10" required></textarea><br>
+            <!-- Ініціалізація CKEditor для основного контенту -->
+            <script>
+                CKEDITOR.replace('content');
+            </script>
+
+            <label for="code">Code:</label>
+            <textarea id="code" name="code" rows="10"></textarea><br>
+            <!-- Ініціалізація CKEditor для коду (якщо потрібно) -->
+            <script>
+                CKEDITOR.replace('code');
+            </script>
+
+            <button type="submit">Add Article</button>
+        </form>
+        <a class="back_button" href="{{ url_for(category) }}">Back to {{ category }}</a>
+    </div>
+</body>
+</html>

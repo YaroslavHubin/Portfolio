@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Contacts</title>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Головна</a></li>
+                <li><a href="#">Новини</a>
+                <ul>
+                    <li><a href="{{ url_for('rynok_praci') }}">Ринок праці</a></li>
+                    <li><a href="{{ url_for('new_articles') }}">Нові статті</a></li>
+                </ul>
+                </li>
+                <li><a href="#">Веб Дизайн</a>
+                    <ul>
+                        <li><a href="{{ url_for('html_css') }}">HTML/CSS</a></li>
+                        <li><a href="{{ url_for('JQuery') }}">JQuery</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ url_for('java') }}">Java</a></li>
+                <li><a href="{{ url_for('python') }}">Python</a></li>
+                <li><a href="{{ url_for('c_sharp') }}">C#</a></li>
+                <li><a href="{{ url_for('forum') }}">Форум</a></li>
+                <li><a href="{{ url_for('contacts') }}">Контакти</a></li>
+
+                {% if 'user_id' in session %}
+                    <li><a href="{{ url_for('edit_user') }}">Налаштування</a></li>
+                    <li><a href="{{ url_for('logout') }}">Вийти</a></li>
+                    {% if session.role == 'admin' %}
+                        <li><a href="{{ url_for('manage_users') }}">Управління користувачами</a></li>
+                        <li><a href="{{ url_for('add_user') }}">Додати користувача</a></li>
+                    {% endif %}
+                    {% if session.role == 'owner' %}
+                        <li><a href="{{ url_for('manage_all_users') }}">Управління користувачами</a></li>
+                        <li><a href="{{ url_for('owner_add_user') }}">Додати користувача</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{{ url_for('register') }}">Реєстрація</a></li>           
+                    <li><a href="{{ url_for('login') }}">Увійти</a></li>
+                {% endif %}
+                
+            </ul>
+        </nav>
+    </div>
+    <div class="text">
+        <h1 class="main_text">Контактна інформація</h1>
+    </div>
+    <div class="container_text_main">
+        <p class="container_text_main">Основні дані про власника проекту.</p>
+        <p class="container_text_main_1">Адреса електронної пошти: phantompirate@gmail.com</p>
+        <p class="container_text_main_1">Номер телефону: 0974489787</p>
+        <p class="container_text_main_1">Username: phantompirate</p>
+        <p class="container_text_main">Основні дані про адміністраторів проекту.</p>
+        <p class="container_text_main_1">Username: snflwrcat</p>
+        <p class="container_text_main_1">Адреса електронної пошти: snflwrcat@gmail.com</p>
+        <p class="container_text_main_1">Username: Al-mig63</p>
+        <p class="container_text_main_1">Адреса електронної пошти: al-mig@gmail.com</p>
+        <p class="container_text_main_1">Username: bird</p>
+        <p class="container_text_main_1">Адреса електронної пошти: bird@gmail.com</p>
+        <p class="container_text_main">PS: Всі схожості з реальними особистостями є випадковими. Власник проекту не несе відповідальності
+            за співпадіння імен з реальними особистоястями.
+        </p>
+    </div>
+</body>
+</html>

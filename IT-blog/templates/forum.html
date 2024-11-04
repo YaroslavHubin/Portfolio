@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forum</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="login_form">
+        <h1>Forum</h1>
+        <a class="back_button" href="{{ url_for('create_topic') }}">Create New Topic</a>
+        <ul>
+            {% for topic in topics %}
+                <li>
+                    <a class="back_button" href="{{ url_for('view_topic', topic_id=topic._id) }}">{{ topic.title }}</a>
+                    <span>by {{ topic.author }} on {{ topic.created_at }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <a class="back_button" href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>

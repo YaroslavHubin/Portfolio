@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 8. Images. Font Awesome. Basic animation</title>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>Lesson 8. Images. Font Awesome. Basic animation</h1>
+            <section class="font">
+                <h2 class="text_title title">Font Awesome+transition</h2>
+                <div class="font-icons">
+                    <ul class="fa-ul">
+                        <li><span class="fa-li"><i class="fa fa-check-square"></i></span>Marvel</li>
+                        <li><span class="fa-li"><i class="fa fa-spinner fa-spin"></i></span>DC</li>
+                        <li><span class="fa-li"><i class="fa fa-square-o"></i></span>Starwars</li>
+                      </ul>
+                </div>
+                <p>Some text<strong>transition</strong></p>
+            </section>
+            <section class="animation">
+                <h2 class="text_title title">Transform</h2>
+                <div class="animation_block">
+                    <div class="block_element"></div>
+                    <div class="block_element"></div>
+                    <div class="block_element"></div>
+                </div>
+                <p>Some text 1<strong>in situation</strong></p>
+            </section>
+            <section class="background">
+                <h2 class="text_title title">CSS Background</h2>
+                <div class="background_image"></div>
+                <p>Put image with<strong>CSS</strong>property<strong>background</strong>.</p>
+            </section>
+            <section class="text">
+                <h2 class="text_title title">Images (HTML Picture)</h2>
+                <div class="text_image">  
+                    <picture>
+                        <source srcset="img/marvel.jpg" media="(min-width: 1330px)">
+                        <source srcset="img/dc.jpg" media="(min-width: 992px)">
+                        <source srcset="img/starwars.jpg" media="(max-width: 992px)">
+                        <img src="img/1300x400.jpg" alt="logo">
+                    </picture>                  
+                </div>
+                <p>Use teg <strong>picture</strong></p>
+                <p>Open this page <strong>on other devices</strong>and check result</p>
+            </section>
+            <section class="cards">
+                <h2 class="cards_title title">Universes (HTML object-fit)</h2>
+                <div class="cards_row">
+                    <div class="cards_column">
+                        <div class="cards_item">
+                            <div class="cards_image">
+                                <img src="img/starwars.jpg" alt="logo">
+                            </div>
+                            <div class="cards_body">
+                                <p>Here picture with <strong>300*181</strong></p>                                
+                            </div>                            
+                        </div>                        
+                    </div>
+                    <div class="cards_column">
+                        <div class="cards_item">
+                            <div class="cards_image">
+                                <img src="img/dc.jpg" alt="logo">                                
+                            </div>
+                            <div class="cards_body">
+                                <p>Here pict. with <strong>700*350</strong></p>                                
+                            </div>                            
+                        </div>                        
+                    </div>
+                    <div class="cards_column">
+                        <div class="cards_item">
+                            <div class="cards_image">
+                                <img src="img/marvel.jpg" alt="logo">                                
+                            </div>
+                            <div class="cards_body">
+                                <p>Here pict. with <strong>1920*1035</strong></p>                                
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="items">
+                <h2 class="items_title title">Universes in a row</h2>
+                <div class="items_item">
+                    <div class="items_image">
+                        <img src="img/marvel.jpg" alt="logo">                        
+                    </div>
+                    <div class="items_body">
+                        <div class="items_label">Marvel</div>
+                        <div class="items_text">Marvel was started...</div>
+                    </div>                    
+                </div>
+                <div class="items_item">
+                    <div class="items_image">
+                        <img src="img/dc.jpg" alt="logo">
+                    </div>
+                    <div class="items_body">
+                        <div class="items_label">DC</div>
+                        <div class="items_text">DC Comics...</div>
+                    </div>
+                </div>
+                <div class="items_item">
+                    <div class="items_image">
+                        <img src="img/starwars.jpg" alt="logo">
+                    </div>
+                    <div class="items_body">
+                        <div class="items_label">Star Wars</div>
+                        <div class="items_text">Star Wars...</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+</body>
+</html>
